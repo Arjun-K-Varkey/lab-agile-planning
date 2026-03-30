@@ -98,7 +98,6 @@ flowchart TD
     AA --> AB
     
     %% OTP Failure Path
-```
     AB -- Wrong OTP or Unavailable --> AC
     AC --> AD
     AD -- Admin Resolve --> AE
@@ -108,3 +107,4 @@ flowchart TD
     AB -- Valid OTP --> AG
     AG --> AH
     AH --> AI
+```
