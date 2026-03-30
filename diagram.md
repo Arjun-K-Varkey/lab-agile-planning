@@ -1,3 +1,4 @@
+```
 flowchart TD
     %% Define Styling Classes (Matching your Eraser diagram theme)
     classDef startEnd fill:#14532d,stroke:#22c55e,color:#fff,stroke-width:2px;
@@ -97,6 +98,7 @@ flowchart TD
     AA --> AB
     
     %% OTP Failure Path
+```
     AB -- Wrong OTP or Unavailable --> AC
     AC --> AD
     AD -- Admin Resolve --> AE
