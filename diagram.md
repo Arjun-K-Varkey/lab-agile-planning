@@ -1,11 +1,11 @@
 flowchart TD
-    %% Define Styling Classes (Matching your Eraser diagram theme)
+    %% Define Styling Classes 
     classDef startEnd fill:#14532d,stroke:#22c55e,color:#fff,stroke-width:2px;
     classDef decision fill:#78350f,stroke:#f59e0b,color:#fff,stroke-width:2px;
     classDef error fill:#7f1d1d,stroke:#ef4444,color:#fff,stroke-width:2px;
     classDef process fill:#1e3a8a,stroke:#3b82f6,color:#fff,stroke-width:2px;
     classDef hardware fill:#4c1d95,stroke:#8b5cf6,color:#fff,stroke-width:2px;
-    classDef vendor fill:#0f172a,stroke:#eab308,color:#fff,stroke-width:3px,stroke-dasharray: 5 5;
+    classDef vendor fill:#0f172a,stroke:#eab308,color:#fff,stroke-width:3px,stroke-dasharray:5;
 
     %% Row 1: Request & Payment
     A([Applicant Login via CCN]):::startEnd
@@ -29,7 +29,7 @@ flowchart TD
     
     %% UPDATED: MOH Integration and Decision
     N[Access MOH Dept for Verification]:::hardware
-    N_Dec{Verification Status}:::decision
+    NDec{Verification Status}:::decision
     
     O[Suspend Vendor Assignment]:::error
     P[Vendor Dispatched to Filling Point]:::process
@@ -57,38 +57,38 @@ flowchart TD
 
     %% Connections - Top Row
     A --> B
-    B -- Pending Dues or Active Request --> C
-    B -- Clear --> D
+    B -->|Pending Dues or Active Request| C
+    B -->|Clear| D
     D --> E
-    E -- Rejected --> F
-    E -- Approved --> G
+    E -->|Rejected| F
+    E -->|Approved| G
     G --> H
-    H -- Failed or Timeout --> I
+    H -->|Failed or Timeout| I
     I --> H
-    H -- Success --> J
+    H -->|Success| J
     J --> K
     K --> L
 
     %% Connections - Vendor Logic
-    VR -- Active Pool --> L
-    L -- No or Timeout --> M
+    VR -->|Active Pool| L
+    L -->|No or Timeout| M
     M --> L
-    L -- Yes --> N
+    L -->|Yes| N
     
     %% Connections - MOH Integration
-    N --> N_Dec
-    N_Dec -- Failed Health or Regulatory Check --> O
-    N_Dec -- Pass --> P
+    N --> NDec
+    NDec -->|Failed Health or Regulatory Check| O
+    NDec -->|Pass| P
 
     %% Connections - Filling
     P --> Q
     Q --> R
-    R -- Expired, Wrong Trip, or Invalid --> S
-    R -- Valid --> T
+    R -->|Expired, Wrong Trip, or Invalid| S
+    R -->|Valid| T
     T --> U
     U --> V
-    V -- Overfill Attempt --> W
-    V -- Correct Volume --> X
+    V -->|Overfill Attempt| W
+    V -->|Correct Volume| X
 
     %% Connections - Delivery
     X --> Y
@@ -97,12 +97,12 @@ flowchart TD
     AA --> AB
     
     %% OTP Failure Path
-    AB -- Wrong OTP or Unavailable --> AC
+    AB -->|Wrong OTP or Unavailable| AC
     AC --> AD
-    AD -- Admin Resolve --> AE
-    AD -- Auto-Close Rules --> AF
+    AD -->|Admin Resolve| AE
+    AD -->|Auto-Close Rules| AF
     
     %% OTP Success Path
-    AB -- Valid OTP --> AG
+    AB -->|Valid OTP| AG
     AG --> AH
     AH --> AI
